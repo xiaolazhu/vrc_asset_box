@@ -1,21 +1,27 @@
 {
-  "name": "frontend",
+  "name": "vrc-asset-box-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
-    "vue": "^3.5.0"
+    "naive-ui": "^2.45.3",
+    "vue": "^3.5.0",
+    "vue-i18n": "^11.4.14"
   },
   "devDependencies": {
+    "@babel/types": "^7.26.0",
     "@vitejs/plugin-vue": "^6.0.0",
+    "@vue/test-utils": "^2.5.1",
+    "jsdom": "^26.1.0",
     "typescript": "^5.6.3",
     "vite": "^7.0.0",
-    "vue-tsc": "^2.1.0",
-    "@babel/types": "^7.26.0"
+    "vitest": "^3.2.7",
+    "vue-tsc": "^2.1.0"
   }
 }
