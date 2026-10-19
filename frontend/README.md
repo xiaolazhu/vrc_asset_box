@@ -1,23 +1,31 @@
-# Vue 3 + TypeScript + Vite
+# VRC Asset Box 前端
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue
-3 `<script setup>` SFCs, check out
-the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+技术栈：Vue 3、TypeScript、Vite、Naive UI 和 vue-i18n
 
-## Recommended IDE Setup
+## 开发与验证
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+在项目根目录安装前端依赖，并启动 Wails 开发模式：
 
-## Type Support For `.vue` Imports in TS
+```powershell
+npm --prefix frontend ci
+wails dev
+```
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type
-by default. In most cases this is fine if you don't really care about component prop types outside of templates.
-However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using
-manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+仅查看前端页面时可运行 `npm --prefix frontend run dev`；浏览器预览没有 Wails 桌面桥，无法执行数据库、文件选择及其他桌面操作
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look
-   for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default,
-   Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+```powershell
+npm --prefix frontend run test -- --run
+npm --prefix frontend run build
+```
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+生产构建输出到 `frontend/dist/`，由 Go 嵌入桌面程序
+
+## 源码结构
+
+- `src/app/`：应用外壳、导航、偏好保存及全局状态
+- `src/features/`：业务页面和功能
+- `src/api/`：桌面桥封装、共享类型及任务轮询
+- `src/i18n/`：语言解析、提示翻译和语言词典
+- `src/shared/`：跨页面共享组件
+- `src/style.css`：主题变量和全局样式
+- `wailsjs/`：Wails 生成的 Go 绑定及运行库，业务代码通过 `src/api/` 调用
